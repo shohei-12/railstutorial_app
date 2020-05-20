@@ -10,7 +10,7 @@ RSpec.describe "StaticPages", type: :request do
     it "show home page" do
       get root_path
       expect(response).to have_http_status(:success)
-      expect(response.body).to include "Home | #{@base_title}"
+      assert_select "title", "#{@base_title}"
     end
   end
 
@@ -18,7 +18,7 @@ RSpec.describe "StaticPages", type: :request do
     it "show home page" do
       get static_pages_home_path
       expect(response).to have_http_status(:success)
-      expect(response.body).to include "Home | #{@base_title}"
+      assert_select "title", "#{@base_title}"
     end
   end
 
@@ -26,7 +26,7 @@ RSpec.describe "StaticPages", type: :request do
     it "show help page" do
       get static_pages_help_path
       expect(response).to have_http_status(:success)
-      expect(response.body).to include "Help | #{@base_title}"
+      assert_select "title", "Help | #{@base_title}"
     end
   end
 
@@ -34,7 +34,7 @@ RSpec.describe "StaticPages", type: :request do
     it "show about page" do
       get static_pages_about_path
       expect(response).to have_http_status(:success)
-      expect(response.body).to include "About | #{@base_title}"
+      assert_select "title", "About | #{@base_title}"
     end
   end
 
@@ -42,7 +42,7 @@ RSpec.describe "StaticPages", type: :request do
     it "show contact page" do
       get static_pages_contact_path
       expect(response).to have_http_status(:success)
-      expect(response.body).to include "Contact | #{@base_title}"
+      assert_select "title", "Contact | #{@base_title}"
     end
   end
 
