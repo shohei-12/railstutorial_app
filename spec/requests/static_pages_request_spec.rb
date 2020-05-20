@@ -30,4 +30,12 @@ RSpec.describe "StaticPages", type: :request do
     end
   end
 
+  describe "GET /contact" do
+    it "show contact page" do
+      get static_pages_contact_path
+      expect(response).to have_http_status(:success)
+      expect(response.body).to include "Contact | #{@base_title}"
+    end
+  end
+
 end
