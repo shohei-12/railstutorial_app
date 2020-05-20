@@ -6,6 +6,14 @@ RSpec.describe "StaticPages", type: :request do
     @base_title = "Ruby on Rails Tutorial Sample App"
   end
 
+  describe "GET /" do
+    it "show home page" do
+      get root_path
+      expect(response).to have_http_status(:success)
+      expect(response.body).to include "Home | #{@base_title}"
+    end
+  end
+
   describe "GET /home" do
     it "show home page" do
       get static_pages_home_path
