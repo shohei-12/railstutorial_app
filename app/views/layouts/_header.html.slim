@@ -1,0 +1,8 @@
+header.navbar.fixed-top.navbar-dark.bg-dark
+    div.container
+        = link_to "sample app", root_path, id: "logo", class: "nav-link text-light"
+        nav
+            ul.nav.justify-content-end
+                li.nav-item = link_to "Home", root_path, class: "nav-link"
+                li.nav-item = link_to "Help", help_path, class: "nav-link"
+                li.nav-item = link_to "Log in", "#", class: "nav-link"

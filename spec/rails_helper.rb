@@ -36,6 +36,16 @@ RSpec.configure do |config|
   # You can omit the specification of the class name (FactoryBot) in the RSpec test code.
   config.include FactoryBot::Syntax::Methods
 
+  # Use headless mode
+  config.before(:each) do |example|
+    if example.metadata[:type] == :system
+      driven_by :selenium, using: :headless_chrome, screen_size: [1400, 1400]
+    end
+  end
+
+  # Load the ApplicaitonHelper
+  config.include ApplicationHelper
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
