@@ -55,6 +55,8 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  # Provides RSpec- and Minitest-compatible one-liners
+  gem 'shoulda-matchers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -66,3 +68,6 @@ gem 'dotenv-rails'
 # slim
 gem 'slim-rails'
 gem 'html2slim'
+
+# bcrypt
+gem 'bcrypt'
