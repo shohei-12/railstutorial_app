@@ -71,3 +71,6 @@ gem 'html2slim'
 
 # bcrypt
 gem 'bcrypt'
+
+# Format the code
+gem 'prettier'

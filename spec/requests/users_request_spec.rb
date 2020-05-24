@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :request do
-
   describe 'GET /signup' do
     it 'show new page' do
       get signup_path
@@ -9,5 +8,4 @@ RSpec.describe 'Users', type: :request do
       expect(response.body).to include full_title('Sign up')
     end
   end
-
 end

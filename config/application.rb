@@ -7,10 +7,8 @@ require 'rails/all'
 Bundler.require(*Rails.groups)
 
 module RailstutorialApp
-  class Application < Rails::Application
-    # Change to slim
-    config.generators.template_engine = :slim
-    # Initialize configuration defaults for originally generated Rails version.
+  class Application < Rails::Application # Change to slim
+    config.generators.template_engine = :slim # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 
     # Settings in config/environments/* take precedence over those specified here.

@@ -1,18 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-
   it 'must be a valid user' do
     expect(build(:user)).to be_valid
   end
 
   it 'must be saved as lower-case in email' do
-    user = create(:user, email: "user@example.com".upcase)
-    expect("user@example.com").to eq user.email
+    user = create(:user, email: 'user@example.com'.upcase)
+    expect('user@example.com').to eq user.email
   end
 
   describe 'validations' do
-
     subject { User.new }
 
     describe 'name' do
@@ -29,19 +27,23 @@ RSpec.describe User, type: :model do
         expect(user).not_to be_valid
       end
       it 'must be allow valid addresses' do
-        is_expected.to allow_values('user@example.com',
-                                    'USER@foo.COM',
-                                    'A_US-ER@foo.bar.org',
-                                    'first.last@foo.jp',
-                                    'alice+bob@baz.cn').for(:email)
+        is_expected.to allow_values(
+          'user@example.com',
+          'USER@foo.COM',
+          'A_US-ER@foo.bar.org',
+          'first.last@foo.jp',
+          'alice+bob@baz.cn'
+        ).for(:email)
       end
       it 'must reject invalid addresses' do
-        is_expected.not_to allow_values('user@example,com',
-                                        'user_at_foo.org',
-                                        'user.name@example.',
-                                        'foo@bar_baz.com',
-                                        'foo@bar+baz.com',
-                                        'foo@bar..com').for(:email)
+        is_expected.not_to allow_values(
+          'user@example,com',
+          'user_at_foo.org',
+          'user.name@example.',
+          'foo@bar_baz.com',
+          'foo@bar+baz.com',
+          'foo@bar..com'
+        ).for(:email)
       end
     end
 
