@@ -3,6 +3,15 @@ header.navbar.fixed-top.navbar-dark.bg-dark
         = link_to "sample app", root_path, id: "logo", class: "nav-link text-light"
         nav
             ul.nav.justify-content-end
-                li.nav-item = link_to "Home", root_path, class: "nav-link"
-                li.nav-item = link_to "Help", help_path, class: "nav-link"
-                li.nav-item = link_to "Log in", "#", class: "nav-link"
+                li.nav-item = link_to "Home", root_path, class: "nav-link white"
+                li.nav-item = link_to "Help", help_path, class: "nav-link white"
+                - if logged_in?
+                    li = link_to "Users", "#", class: "nav-link white"
+                    li.dropdown
+                        a href="#" class="dropdown-toggle nav-link white" data-toggle="dropdown" Account
+                        ul.dropdown-menu
+                            li.dropdown-item = link_to "Profile", current_user, class: "dropdown-link"
+                            li.dropdown-item = link_to "Settings", "#", class: "dropdown-link"
+                            li.dropdown-item = link_to "Log out", logout_path, method: :delete, class: "dropdown-link"
+                - else
+                    li = link_to "Log in", login_path, class: "nav-link white"
