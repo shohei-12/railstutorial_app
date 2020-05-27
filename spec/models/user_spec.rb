@@ -52,4 +52,8 @@ RSpec.describe User, type: :model do
       it { is_expected.to validate_length_of(:password).is_at_least(6) }
     end
   end
+
+  it 'authenticated? must return false for a user with nil digest' do
+    expect(build(:user).authenticated?('')).to be_falsey
+  end
 end

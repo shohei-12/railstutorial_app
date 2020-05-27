@@ -22,6 +22,11 @@ RSpec.describe 'Sessions', type: :request do
         delete logout_path
         expect(response).to redirect_to root_path
         expect(is_logged_in?).to be_falsey
+
+        # Simulate a user clicking logout in a second window
+        delete logout_path
+        expect(response).to redirect_to root_path
+        expect(is_logged_in?).to be_falsey
       end
     end
   end

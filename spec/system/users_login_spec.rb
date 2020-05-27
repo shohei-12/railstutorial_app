@@ -48,5 +48,19 @@ RSpec.describe 'UsersLogin', type: :system do
         is_expected.not_to have_css('.alert-danger')
       end
     end
+
+    describe 'remember me' do
+      it 'login with remembering' do
+        log_in_with_remember_as(user, remember_me: '1')
+        expect(cookies[:user_id]).not_to eq nil
+        expect(cookies[:remember_token]).not_to eq nil
+      end
+
+      it 'login without remembering' do
+        log_in_with_remember_as(user)
+        expect(cookies[:user_id]).to eq nil
+        expect(cookies[:remember_token]).to eq nil
+      end
+    end
   end
 end
