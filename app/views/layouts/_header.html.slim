@@ -11,7 +11,7 @@ header.navbar.fixed-top.navbar-dark.bg-dark
                         a href="#" class="dropdown-toggle nav-link white" data-toggle="dropdown" Account
                         ul.dropdown-menu
                             li.dropdown-item = link_to "Profile", current_user, class: "dropdown-link"
-                            li.dropdown-item = link_to "Settings", "#", class: "dropdown-link"
+                            li.dropdown-item = link_to "Settings", edit_user_path(current_user) , class: "dropdown-link"
                             li.dropdown-item = link_to "Log out", logout_path, method: :delete, class: "dropdown-link"
                 - else
                     li = link_to "Log in", login_path, class: "nav-link white"
