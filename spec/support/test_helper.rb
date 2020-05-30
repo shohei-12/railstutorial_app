@@ -4,9 +4,17 @@ module TestHelper
     !session[:user_id].nil?
   end
 
+  def is_logged_in_system?
+    !page.get_rack_session_key('user_id').nil?
+  end
+
   # Log in as a test user
   def log_in_as(user)
     session[:user_id] = user.id
+  end
+
+  def log_in_as_system(user)
+    page.set_rack_session(user_id: user.id)
   end
 
   def log_in_with_remember_as(user, password: 'foobar', remember_me: '0')

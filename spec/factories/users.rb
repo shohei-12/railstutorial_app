@@ -5,4 +5,18 @@ FactoryBot.define do
     password { 'foobar' }
     password_confirmation { 'foobar' }
   end
+
+  factory :other, class: User do
+    name { 'michael' }
+    email { 'michael@example.com' }
+    password { 'foobar' }
+    password_confirmation { 'foobar' }
+  end
+
+  factory :sample, class: User do
+    sequence(:name) { |i| "user_#{i}" }
+    sequence(:email) { |i| "user-#{i}@example.com" }
+    password { 'foobar' }
+    password_confirmation { 'foobar' }
+  end
 end

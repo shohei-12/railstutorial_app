@@ -6,7 +6,7 @@ header.navbar.fixed-top.navbar-dark.bg-dark
                 li.nav-item = link_to "Home", root_path, class: "nav-link white"
                 li.nav-item = link_to "Help", help_path, class: "nav-link white"
                 - if logged_in?
-                    li = link_to "Users", "#", class: "nav-link white"
+                    li = link_to "Users", users_path, class: "nav-link white"
                     li.dropdown
                         a href="#" class="dropdown-toggle nav-link white" data-toggle="dropdown" Account
                         ul.dropdown-menu

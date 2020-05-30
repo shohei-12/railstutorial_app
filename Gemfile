@@ -74,3 +74,13 @@ gem 'bcrypt'
 
 # Format the code
 gem 'prettier'
+
+# Provide rack middleware for 'rack.session' environment management
+gem 'rack_session_access'
+
+# Generate dummy data
+gem 'faker'
+
+# Pagination
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'

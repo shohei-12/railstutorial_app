@@ -15,4 +15,47 @@ RSpec.describe 'Users', type: :request do
       expect(is_logged_in?).to be_truthy
     end
   end
+
+  describe 'edit and update actions' do
+    before { @user = create(:user) }
+
+    context 'not logged in' do
+      it 'must not be edited' do
+        get edit_user_path(@user)
+        expect(response).to redirect_to login_path
+      end
+
+      it 'must not be updated' do
+        patch user_path(@user), params: { user: attributes_for(:user) }
+        expect(response).to redirect_to login_path
+      end
+    end
+
+    context 'logged in as other user' do
+      before do
+        @other = create(:other)
+        post login_path, params: { session: attributes_for(:other) }
+      end
+
+      it 'must not be edited' do
+        get edit_user_path(@user)
+        expect(response).to redirect_to root_path
+      end
+
+      it 'must not be updated' do
+        patch user_path(@user), params: { user: attributes_for(:user) }
+        expect(response).to redirect_to root_path
+      end
+    end
+
+    describe 'friendly forwarding' do
+      it 'must be redirected to the edit page after logging in' do
+        get edit_user_path(@user)
+        expect(response).to redirect_to login_path
+        post login_path, params: { session: attributes_for(:user) }
+        expect(response).to redirect_to edit_user_path(@user)
+        expect(session[:forwarding_url]).to eq nil
+      end
+    end
+  end
 end
