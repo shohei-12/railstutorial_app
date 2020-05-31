@@ -58,4 +58,30 @@ RSpec.describe 'Users', type: :request do
       end
     end
   end
+
+  describe 'destroy action' do
+    before do
+      @user = create(:user)
+      @other = create(:other)
+    end
+
+    it 'must not delete user if not logged in' do
+      delete user_path(@other)
+      expect(response).to redirect_to login_path
+    end
+
+    it 'must not delete user if not an administrator' do
+      post login_path, params: { session: attributes_for(:other) }
+      delete user_path(@user)
+      expect(response).to redirect_to root_path
+    end
+  end
+
+  it 'must not allow the admin attribute to be edited via the web' do
+    @other = create(:other)
+    post login_path, params: { session: attributes_for(:other) }
+    expect(@other.admin?).to be_falsey
+    patch user_path(@other), params: { user: { admin: true } }
+    expect(@other.reload.admin?).to be_falsey
+  end
 end
