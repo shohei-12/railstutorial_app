@@ -56,4 +56,13 @@ RSpec.describe User, type: :model do
   it 'authenticated? must return false for a user with nil digest' do
     expect(build(:user).authenticated?('')).to be_falsey
   end
+
+  context 'deleting a user' do
+    it 'must delete  microposts associated to a user' do
+      user = create(:user)
+      orange = create(:orange, user_id: user.id)
+      user.destroy
+      expect(Micropost.count).to eq 0
+    end
+  end
 end

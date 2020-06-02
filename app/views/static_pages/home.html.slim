@@ -1,12 +1,23 @@
-div.center.jumbotron
-    h1 Welcome to the Sample App
+- if logged_in?
+    div.row
+        aside.col-md-4
+            section.user_info
+                = render 'shared/user_info'
+            section.micropost_form
+                = render 'shared/micropost_form'
+        div.col-md-8
+            h3 Micropost Feed
+            = render 'shared/feed'
+- else
+    div.center.jumbotron
+        h1 Welcome to the Sample App
 
-    h2
-        | This is the home page for the&nbsp;
-        a href="https://railstutorial.jp/" Ruby on Rails Tutorial
-        |  sample application.
+        h2
+            | This is the home page for the&nbsp;
+            a href="https://railstutorial.jp/" Ruby on Rails Tutorial
+            |  sample application.
 
-    = link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary"
+        = link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary"
 
-= link_to image_tag("rails.svg", alt: "Rails logo", width: "200px"), "https://rubyonrails.org/"
-= image_tag("kitten.jpg", alt: "Kitten", width: "200px")
+    = link_to image_tag("rails.svg", alt: "Rails logo", width: "200px"), "https://rubyonrails.org/"
+    = image_tag("kitten.jpg", alt: "Kitten", width: "200px")

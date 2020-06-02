@@ -8,7 +8,7 @@ RSpec.describe 'Users', type: :request do
       expect(response.body).to include full_title('Sign up')
     end
 
-    it 'Log in after user signup' do
+    it 'log in after user signup' do
       post users_path, params: { user: attributes_for(:user) }
       expect(response).to redirect_to user_path(User.last)
       expect(response).to have_http_status 302

@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :microposts, dependent: :destroy
   attr_accessor :remember_token
 
   before_save { email.downcase! }
@@ -43,5 +44,10 @@ class User < ApplicationRecord
   # destroy a user's login information
   def forget
     update_attribute(:remember_digest, nil)
+  end
+
+  # prototype
+  def feed
+    Micropost.where('user_id = ?', id)
   end
 end
