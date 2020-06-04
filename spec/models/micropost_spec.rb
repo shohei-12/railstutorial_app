@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Micropost, type: :model do
   it 'must be valid' do
-    @user = create(:user)
-    @micropost = @user.microposts.build(content: 'Lorem ipsum')
-    expect(@micropost).to be_valid
+    user = create(:user)
+    micropost = user.microposts.build(content: 'Lorem ipsum')
+    expect(micropost).to be_valid
   end
 
   it 'line up in descending order' do

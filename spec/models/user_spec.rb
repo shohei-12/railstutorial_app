@@ -65,4 +65,36 @@ RSpec.describe User, type: :model do
       expect(Micropost.count).to eq 0
     end
   end
+
+  it 'must follow and unfollow a user' do
+    user = create(:user)
+    other = create(:other)
+    expect(user.following?(other)).to be_falsey
+    user.follow(other)
+    expect(user.following?(other)).to be_truthy
+    expect(other.followers.include?(user)).to be_truthy
+    user.unfollow(other)
+    expect(user.following?(other)).to be_falsey
+  end
+
+  describe '#feed' do
+    it 'Return microposts for you and the users you are following' do
+      john = create(:user)
+      david = create(:other)
+      lisa = create(:sample)
+      create(:cat_video, user_id: john.id)
+      create(:orange, user_id: david.id)
+      create(:most_recent, user_id: lisa.id)
+      create(:relationship_1, follower_id: john.id, followed_id: david.id)
+      john.microposts.each do |micropost|
+        expect(john.feed.include?(micropost)).to eq (true)
+      end
+      david.microposts.each do |micropost|
+        expect(john.feed.include?(micropost)).to eq (true)
+      end
+      lisa.microposts.each do |micropost|
+        expect(john.feed.include?(micropost)).to eq (false)
+      end
+    end
+  end
 end
